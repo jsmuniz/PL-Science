@@ -1,0 +1,62 @@
+<ui:composition template="/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="top">
+		<ui:include src="menu.xhtml" />
+	</ui:define>
+
+	<ui:define name="content">
+		<center>
+		<h:form>
+			<p:panelGrid columns="1" styleClass="semBorda1">
+				<p:panelGrid columns="2" styleClass="semBorda1">
+					<p:column>
+						<h:outputLabel for="cpf" value="CPF:" />
+					</p:column>
+					<p:column>
+						<p:inputMask id="cpf" value="#{loginController.cpf}"
+							mask="999.999.999-99"
+							requiredMessage="Campo obrigatório não preenchido" />
+					</p:column>
+					<p:column>
+						<h:outputLabel for="password" value="Senha:" />
+					</p:column>
+					<p:column>
+						<p:password value="#{loginController.senha}" id="password"
+							required="true" label="password">
+							<f:validateRequired for="password" />
+							<f:validateLength for="password" minimum="5" maximum="10" />
+						</p:password>
+					</p:column>
+				</p:panelGrid>
+
+				<p:column colspan="2">
+					<h:commandButton type="submit" id="loginButton" value="Login"
+						action="#{loginController.validaLogin()}" />
+				</p:column>
+
+				<p:column colspan="2">
+					<div id="mensagensLogin">
+						<h:messages showSummary="false" showDetail="true" />
+					</div>
+				</p:column>
+
+				<p:column colspan="2">
+					<p:commandLink value="I forgot my password."
+						action="#{passwordController.recuperarSenha}"
+						style=" fonte-size: 9px;" />
+				</p:column>
+
+				<p:column colspan="2">
+					<div id="espaco"></div>
+				</p:column>
+			</p:panelGrid>
+		</h:form>	
+		</center>
+	</ui:define>
+</ui:composition>
