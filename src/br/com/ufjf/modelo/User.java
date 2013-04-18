@@ -1,154 +1,90 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ufjf.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
+
 
 /**
- *
- * @author magnus
+ * The persistent class for the user database table.
+ * 
  */
 @Entity
-@Table(name = "User")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-    @NamedQuery(name = "User.findByIdScientist", query = "SELECT u FROM User u WHERE u.idScientist = :idScientist"),
-    @NamedQuery(name = "User.findByNomeScientist", query = "SELECT u FROM User u WHERE u.nomeScientist = :nomeScientist"),
-    @NamedQuery(name = "User.findByLoginScientist", query = "SELECT u FROM User u WHERE u.loginScientist = :loginScientist"),
-    @NamedQuery(name = "User.findBySenhaScientist", query = "SELECT u FROM User u WHERE u.senhaScientist = :senhaScientist"),
-    @NamedQuery(name = "User.findByCpfScientist", query = "SELECT u FROM User u WHERE u.cpfScientist = :cpfScientist"),
-    @NamedQuery(name = "User.findByEmailScientist", query = "SELECT u FROM User u WHERE u.emailScientist = :emailScientist"),
-    @NamedQuery(name = "User.findByInstituicaoScientist", query = "SELECT u FROM User u WHERE u.instituicaoScientist = :instituicaoScientist")})
 public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "idScientist")
-    private Integer idScientist;
-    @Basic(optional = false)
-    @Column(name = "nomeScientist")
-    private String nomeScientist;
-    @Basic(optional = false)
-    @Column(name = "loginScientist")
-    private String loginScientist;
-    @Basic(optional = false)
-    @Column(name = "senhaScientist")
-    private String senhaScientist;
-    @Basic(optional = false)
-    @Column(name = "cpfScientist")
-    private String cpfScientist;
-    @Basic(optional = false)
-    @Column(name = "emailScientist")
-    private String emailScientist;
-    @Column(name = "instituicaoScientist")
-    private String instituicaoScientist;
+	private static final long serialVersionUID = 1L;
 
-    public User() {
-    }
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idScientist;
 
-    public User(Integer idScientist) {
-        this.idScientist = idScientist;
-    }
+	private String cpfScientist;
 
-    public User(Integer idScientist, String nomeScientist, String loginScientist, String senhaScientist, String cpfScientist, String emailScientist) {
-        this.idScientist = idScientist;
-        this.nomeScientist = nomeScientist;
-        this.loginScientist = loginScientist;
-        this.senhaScientist = senhaScientist;
-        this.cpfScientist = cpfScientist;
-        this.emailScientist = emailScientist;
-    }
+	private String emailScientist;
 
-    public Integer getIdScientist() {
-        return idScientist;
-    }
+	private String instituicaoScientist;
 
-    public void setIdScientist(Integer idScientist) {
-        this.idScientist = idScientist;
-    }
+	private String loginScientist;
 
-    public String getNomeScientist() {
-        return nomeScientist;
-    }
+	private String nomeScientist;
 
-    public void setNomeScientist(String nomeScientist) {
-        this.nomeScientist = nomeScientist;
-    }
+	private String senhaScientist;
 
-    public String getLoginScientist() {
-        return loginScientist;
-    }
+	public User() {
+	}
 
-    public void setLoginScientist(String loginScientist) {
-        this.loginScientist = loginScientist;
-    }
+	public int getIdScientist() {
+		return this.idScientist;
+	}
 
-    public String getSenhaScientist() {
-        return senhaScientist;
-    }
+	public void setIdScientist(int idScientist) {
+		this.idScientist = idScientist;
+	}
 
-    public void setSenhaScientist(String senhaScientist) {
-        this.senhaScientist = senhaScientist;
-    }
+	public String getCpfScientist() {
+		return this.cpfScientist;
+	}
 
-    public String getCpfScientist() {
-        return cpfScientist;
-    }
+	public void setCpfScientist(String cpfScientist) {
+		this.cpfScientist = cpfScientist;
+	}
 
-    public void setCpfScientist(String cpfScientist) {
-        this.cpfScientist = cpfScientist;
-    }
+	public String getEmailScientist() {
+		return this.emailScientist;
+	}
 
-    public String getEmailScientist() {
-        return emailScientist;
-    }
+	public void setEmailScientist(String emailScientist) {
+		this.emailScientist = emailScientist;
+	}
 
-    public void setEmailScientist(String emailScientist) {
-        this.emailScientist = emailScientist;
-    }
+	public String getInstituicaoScientist() {
+		return this.instituicaoScientist;
+	}
 
-    public String getInstituicaoScientist() {
-        return instituicaoScientist;
-    }
+	public void setInstituicaoScientist(String instituicaoScientist) {
+		this.instituicaoScientist = instituicaoScientist;
+	}
 
-    public void setInstituicaoScientist(String instituicaoScientist) {
-        this.instituicaoScientist = instituicaoScientist;
-    }
+	public String getLoginScientist() {
+		return this.loginScientist;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idScientist != null ? idScientist.hashCode() : 0);
-        return hash;
-    }
+	public void setLoginScientist(String loginScientist) {
+		this.loginScientist = loginScientist;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.idScientist == null && other.idScientist != null) || (this.idScientist != null && !this.idScientist.equals(other.idScientist))) {
-            return false;
-        }
-        return true;
-    }
+	public String getNomeScientist() {
+		return this.nomeScientist;
+	}
 
-    @Override
-    public String toString() {
-        return "br.com.ufjf.modelo.User[ idScientist=" + idScientist + " ]";
-    }
-    
+	public void setNomeScientist(String nomeScientist) {
+		this.nomeScientist = nomeScientist;
+	}
+
+	public String getSenhaScientist() {
+		return this.senhaScientist;
+	}
+
+	public void setSenhaScientist(String senhaScientist) {
+		this.senhaScientist = senhaScientist;
+	}
+
 }

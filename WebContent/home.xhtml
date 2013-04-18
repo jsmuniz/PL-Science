@@ -12,51 +12,50 @@
 
 	<ui:define name="content">
 		<center>
-		<h:form>
-			<p:panelGrid columns="1" styleClass="semBorda1">
-				<p:panelGrid columns="2" styleClass="semBorda1">
-					<p:column>
-						<h:outputLabel for="cpf" value="CPF:" />
+			<h:form>
+				<p:panelGrid columns="1" styleClass="semBorda1">
+					<p:panelGrid columns="2" styleClass="semBorda1">
+						<p:column>
+							<h:outputLabel for="user" value="User:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="user" value="#{loginController.login}"
+								requiredMessage="Campo obrigatório não preenchido" />
+						</p:column>
+						<p:column>
+							<h:outputLabel for="password" value="Senha:" />
+						</p:column>
+						<p:column>
+							<p:password value="#{loginController.senha}" id="password"
+								required="true" label="password">
+								<f:validateRequired for="password" />
+								<f:validateLength for="password" minimum="5" maximum="10" />
+							</p:password>
+						</p:column>
+					</p:panelGrid>
+
+					<p:column colspan="2">
+						<h:commandButton type="submit" id="loginButton" value="Login"
+							action="#{loginController.validaLogin()}" />
 					</p:column>
-					<p:column>
-						<p:inputMask id="cpf" value="#{loginController.cpf}"
-							mask="999.999.999-99"
-							requiredMessage="Campo obrigatório não preenchido" />
+
+					<p:column colspan="2">
+						<div id="mensagensLogin">
+							<h:messages showSummary="false" showDetail="true" />
+						</div>
 					</p:column>
-					<p:column>
-						<h:outputLabel for="password" value="Senha:" />
+
+					<p:column colspan="2">
+						<p:commandLink value="I forgot my password."
+							action="#{passwordController.recuperarSenha}"
+							style=" fonte-size: 9px;" />
 					</p:column>
-					<p:column>
-						<p:password value="#{loginController.senha}" id="password"
-							required="true" label="password">
-							<f:validateRequired for="password" />
-							<f:validateLength for="password" minimum="5" maximum="10" />
-						</p:password>
+
+					<p:column colspan="2">
+						<div id="espaco"></div>
 					</p:column>
 				</p:panelGrid>
-
-				<p:column colspan="2">
-					<h:commandButton type="submit" id="loginButton" value="Login"
-						action="#{loginController.validaLogin()}" />
-				</p:column>
-
-				<p:column colspan="2">
-					<div id="mensagensLogin">
-						<h:messages showSummary="false" showDetail="true" />
-					</div>
-				</p:column>
-
-				<p:column colspan="2">
-					<p:commandLink value="I forgot my password."
-						action="#{passwordController.recuperarSenha}"
-						style=" fonte-size: 9px;" />
-				</p:column>
-
-				<p:column colspan="2">
-					<div id="espaco"></div>
-				</p:column>
-			</p:panelGrid>
-		</h:form>	
+			</h:form>
 		</center>
 	</ui:define>
 </ui:composition>
